@@ -1,2 +1,1 @@
-
-Copyright (C) 2017 Sergey Birukov
+Copyright (C) 2017 Senso Devices Inc.

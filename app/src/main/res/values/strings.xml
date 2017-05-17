@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SensoTCP</string>
+
+    <string name="ip_address">IP Address:</string>
+    <string name="start_server">Start server</string>
+    <string name="stop_server">Stop server</string>
+</resources>
