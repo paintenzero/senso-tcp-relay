@@ -47,12 +47,10 @@ public class SensoServer implements ISensoPoseHandler {
         if (GetState() != SensoServerStates.Stopped) return;
         m_state = SensoServerStates.Started;
         if (m_serverThread == null) {
-            Log.w("SensoTCP", "Creating new server thread");
             m_serverThread = new Thread(new SensoServerThread());
             m_serverThread.start();
         }
         if (m_senderThread == null) {
-            Log.w("SensoTCP", "Creating new sender thread");
             m_senderThread = new Thread(new SensoSender());
             m_senderThread.start();
         }
@@ -79,7 +77,6 @@ public class SensoServer implements ISensoPoseHandler {
 
     @Override
     public void OnSensoPose(String jsonPose) {
-        Log.d("SensoTCP", "server on pose");
         if (GetState() != SensoServerStates.Started) return;
         synchronized (m_sendBuf) {
             m_sendBuf.add(jsonPose);
@@ -105,7 +102,6 @@ public class SensoServer implements ISensoPoseHandler {
                     if (!e.getMessage().equals("Socket closed")) e.printStackTrace();
                 }
             }
-            Log.w("SensoTCP", "Exiting senso server thread!");
             try {
                 serverSocket.close();
             } catch (IOException e) {
@@ -143,7 +139,6 @@ public class SensoServer implements ISensoPoseHandler {
                         m_sendBuf.clear();
                     }
                 }
-                Log.d("SensoTCP", "Sending " + sendCnt + " packets");
 
                 synchronized (m_clientSockets) {
                     BufferedWriter aWriter;
